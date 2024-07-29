@@ -4,14 +4,26 @@ import Header from './components/Header';
 import { db } from './data/db';
 
 function App() {
-  const [data, setData] = useState(db);
-  const [cart, setCart] = useState([]);
+  const initialCart = () => {
+    const localStorageCart = localStorage.getItem('cart');
+    return localStorageCart ? JSON.parse(localStorageCart) : [];
+  };
 
+  const [data, setData] = useState(db);
+  const [cart, setCart] = useState(initialCart);
+
+  const MIN_ITEMS = 1;
   const MAX_ITEMS = 5;
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   function addToCart(item) {
     const itemExists = cart.findIndex((guitar) => guitar.id === item.id);
     if (itemExists >= 0) {
+      // revisamos la posición actual, si es mayor a MAX_ITEMS ponemor return para que no ejecute nada para que no se pase de la cantidad máxima
+      if (cart[itemExists].quantity >= MAX_ITEMS) return;
       // existe en el carrito
       const updateCart = [...cart];
       updateCart[itemExists].quantity++;
@@ -39,9 +51,9 @@ function App() {
     setCart(updatedCart);
   }
 
-  function decrementQuantity(id) {
-    const deletCart = cart.map((item) => {
-      if (item.id === id && item.quantity > 1) {
+  function decreaseQuantity(id) {
+    const updateCart = cart.map((item) => {
+      if (item.id === id && item.quantity > MIN_ITEMS) {
         return {
           ...item,
           quantity: item.quantity - 1,
@@ -49,7 +61,11 @@ function App() {
       }
       return item;
     });
-    setCart(deletCart);
+    setCart(updateCart);
+  }
+
+  function clearCart() {
+    setCart([]);
   }
 
   return (
@@ -58,7 +74,8 @@ function App() {
         cart={cart}
         removeFromCart={removeFromCart}
         increaseQuantity={increaseQuantity}
-        decrementQuantity={decrementQuantity}
+        decrementQuantity={decreaseQuantity}
+        clearCart={clearCart}
       />
 
       <main className='container-xl mt-5'>
