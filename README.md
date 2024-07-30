@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+# Guitar Store
+Este proyecto es una tienda de guitarras construida con React y Vite, utilizando TypeScript para el tipado y localStorage para la persistencia de datos.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Características
 
-Currently, two official plugins are available:
+- **Framework**: React con Vite para el desarrollo rápido de la aplicación.
+- **Tipado**: TypeScript proporciona un tipado estático para mejorar la robustez del código.
+- **Persistencia**: LocalStorage mantiene el estado del carrito de compras entre sesiones.
+- **Optimización**: React Hooks - Uso de useState, useEffect, useMemo, y props para la gestión del estado y optimización del rendimiento.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Instalación
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
 
-- Configure the top-level `parserOptions` property like this:
+**Clona el repositorio**:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```sh
+git clone https://github.com/tuusuario/guitar-store.git
+Navega al directorio del proyecto:
+
+Copiar código
+cd guitar-store
+Instala las dependencias:
+
+Copiar código
+npm install
+Inicia el servidor de desarrollo:
+
+Copiar código
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Uso
+- Carrito de Compras
+El carrito de compras está gestionado por el hook useCart, que proporciona las siguientes funcionalidades:
+
+- Agregar al carrito: Añade una guitarra al carrito. Si la guitarra ya existe en el carrito, incrementa la cantidad.
+- Eliminar del carrito: Elimina una guitarra del carrito.
+- Aumentar cantidad: Incrementa la cantidad de una guitarra en el carrito.
+- Disminuir cantidad: Disminuye la cantidad de una guitarra en el carrito, hasta un mínimo de uno.
+- Vaciar carrito: Elimina todos los artículos del carrito.
+
+# Estado derivado:
+
+-**isEmpty**: Indica si el carrito está vacío.
+- **cartTotal**: Calcula el total del precio de los artículos en el carrito.
+
+
