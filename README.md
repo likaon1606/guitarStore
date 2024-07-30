@@ -19,15 +19,15 @@ Este proyecto es una tienda de guitarras construida con React y Vite, utilizando
 git clone https://github.com/tuusuario/guitar-store.git
 Navega al directorio del proyecto:
 
-Copiar código
+- Copiar código
 cd guitar-store
 Instala las dependencias:
 
-Copiar código
+- Copiar código
 npm install
 Inicia el servidor de desarrollo:
 
-Copiar código
+- Copiar código
 npm run dev
 ```
 
